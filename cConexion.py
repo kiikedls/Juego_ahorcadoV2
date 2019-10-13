@@ -3,7 +3,7 @@ from random import shuffle
 
 class cConexion:
     def __init__(self):
-        self.db=pymysql.connect('127.0.0.1','root','','juego_ahorcado')
+        self.db=pymysql.connect('127.0.0.1','root','','juego')
         self.cursor=self.db.cursor()
 
     def impPalabras(self):
