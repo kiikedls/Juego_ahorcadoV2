@@ -1,10 +1,13 @@
 from os import system
 from cListas import cListas
 from cJuego import cJuego
+from cConexion import cConexion
+from verificar import verificar
 
 print("bienvenido al ahorcado")
 input()
 lista = cListas()
+data=cConexion()
 code = 1
 
 while code == 1:
@@ -16,8 +19,13 @@ while code == 1:
     4.-reset""")
     n = int(input())
     if 1 == n:
-        palabras = lista.llenar_lista()
-        palabras = lista.imprimir_listas()
+        if verificar.verificar():
+            palabras = data.llenar_lista()
+            palabras=data.imprimir_listas()
+            print(palabras)
+        else:
+            palabras = lista.llenar_lista()
+            palabras = lista.imprimir_listas()
         ahorcado = cJuego()
         ahorcado.jugar(palabras)
         input()
