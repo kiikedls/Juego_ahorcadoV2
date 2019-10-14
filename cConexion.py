@@ -53,6 +53,7 @@ class cConexion:
         lista=[]
         for i in self.cursor.fetchall():
             pal=i[0]
+            #insertar palabras
             lista.append(pal)
 
         self.cursor.execute(f"DELETE FROM `palabras_destino` WHERE (`palabra` = '{n}')")
@@ -63,7 +64,7 @@ class cConexion:
             #     self.db.rollback()
             #     print("pudrete flanders")
             #
-        # self.db.commit()
+        self.db.commit()
         self.db.close()
 
     def nueva_palabra(self,p):
