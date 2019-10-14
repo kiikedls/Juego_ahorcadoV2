@@ -7,7 +7,7 @@ from verificar import verificar
 print("bienvenido al ahorcado")
 input()
 lista = cListas()
-data=cConexion()
+data = cConexion()
 code = 1
 
 while code == 1:
@@ -21,7 +21,7 @@ while code == 1:
     if 1 == n:
         if verificar.verificar():
             palabras = data.llenar_lista()
-            palabras=data.imprimir_listas()
+            palabras = data.imprimir_listas()
             print(palabras)
         else:
             palabras = lista.llenar_lista()
@@ -33,20 +33,18 @@ while code == 1:
     elif 2 == n:
         system("cls")
         if verificar.verificar():
-            palabras=data.llenar_lista()
+            palabras = data.llenar_lista()
             nueva = input("escribe la nueva palabra que quieres agregar al juego: ")
             data.nueva_palabra(nueva)
         else:
             palabras = lista.llenar_lista()
             nueva = input("escribe la nueva palabra que quieres agregar al juego: ")
             lista.nueva_palabra(nueva)
-        # nueva = input("escribe la nueva palabra que quieres agregar al juego: ")
-        # lista.nueva_palabra(nueva)
     elif 3 == n:
         code = -1
     elif 4 == n:
         if verificar.verificar():
-            palabras=data.resetear()
+            palabras = data.resetear()
         else:
             palabras = lista.resetear()
         print(palabras)

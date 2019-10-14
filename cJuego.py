@@ -1,5 +1,6 @@
 from os import system
 
+
 class cJuego:
     def __init__(self):
         self.ner = 0

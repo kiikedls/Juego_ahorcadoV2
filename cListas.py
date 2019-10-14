@@ -1,7 +1,9 @@
 from random import shuffle
 
+
 class cListas:
-    lista = []
+    def __init__(self):
+        self.lista = []
 
     def llenar_lista(self):
         self.lista = [line.rstrip() for line in open("lista_destino.txt")]
