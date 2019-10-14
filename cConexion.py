@@ -49,28 +49,21 @@ class cConexion:
     def salva_palabra(self,n):
         self.db = pymysql.connect('127.0.0.1', 'root', '', 'juego')
         self.cursor = self.db.cursor()
-        self.cursor.execute('SELECT `palabra` FROM palabras_destino')
-        lista=[]
-        for i in self.cursor.fetchall():
-            pal=i[0]
-            #insertar palabras
-            lista.append(pal)
+        self.cursor.execute('DROP TABLE `palabras_destino`')
+        self.cursor.execute("""
+                CREATE TABLE palabras_destino (id int auto_increment not null primary key, 
+                palabra varchar(20) not null)""")
 
-        self.cursor.execute(f"DELETE FROM `palabras_destino` WHERE (`palabra` = '{n}')")
-            # try:
-            #     self.cursor.execute(palabra)
-            #     self.db.commit()
-            # except:
-            #     self.db.rollback()
-            #     print("pudrete flanders")
-            #
+        for i in self.lista_destino:
+            self.cursor.execute(f"INSERT INTO `palabras_destino`(`palabra`) VALUES('{i}')")
         self.db.commit()
         self.db.close()
 
     def nueva_palabra(self,p):
         self.db = pymysql.connect('127.0.0.1', 'root', '', 'juego')
         self.cursor = self.db.cursor()
-        self.cursor.execute(f"INSERT INTO `palabras_origen`(`palabra`) VALUES('{p}')")
+        x=p
+        self.cursor.execute(f"INSERT INTO `palabras_origen`(`palabra`) VALUES('{x}')")
         self.db.commit()
         self.db.close()
         print("palabra agregada con exito!")
@@ -103,3 +96,8 @@ class cConexion:
         self.db.close()
         return "lista reestablecida °w°"
 
+#limpiar el codigo
+#clases estaticas
+#consulta para eliminar el ultimo registro
+#agregar nombre
+#
