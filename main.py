@@ -32,13 +32,23 @@ while code == 1:
 
     elif 2 == n:
         system("cls")
-        palabras = lista.llenar_lista()
-        nueva = input("escribe la nueva palabra que quieres agregar al juego: ")
-        lista.nueva_palabra(nueva)
+        if verificar.verificar():
+            palabras=data.llenar_lista()
+            nueva = input("escribe la nueva palabra que quieres agregar al juego: ")
+            data.nueva_palabra(nueva)
+        else:
+            palabras = lista.llenar_lista()
+            nueva = input("escribe la nueva palabra que quieres agregar al juego: ")
+            lista.nueva_palabra(nueva)
+        # nueva = input("escribe la nueva palabra que quieres agregar al juego: ")
+        # lista.nueva_palabra(nueva)
     elif 3 == n:
         code = -1
     elif 4 == n:
-        palabras = lista.resetear()
+        if verificar.verificar():
+            palabras=data.resetear()
+        else:
+            palabras = lista.resetear()
         print(palabras)
         input()
     elif 5 == n:
