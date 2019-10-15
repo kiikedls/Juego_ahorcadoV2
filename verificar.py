@@ -2,7 +2,6 @@ import pymysql
 
 
 class verificar:
-
     @staticmethod
     def verificar():
         try:
