@@ -33,13 +33,12 @@ class cConexion:
     def salva_palabra(self, n):
         self.db = pymysql.connect('127.0.0.1', 'root', '', 'juego')
         self.cursor = self.db.cursor()
-        self.cursor.execute('DROP TABLE `palabras_destino`')
-        self.cursor.execute("""
-                CREATE TABLE palabras_destino (id int auto_increment not null primary key, 
-                palabra varchar(20) not null)""")
-
-        for i in self.lista_destino:
-            self.cursor.execute(f"INSERT INTO `palabras_destino`(`palabra`) VALUES('{i}')")
+        self.cursor.execute('SELECT `palabra` FROM `palabras_destino`')
+        dest=self.cursor.fetchall()
+        for l in dest:
+            palabra=l[0]
+            if n==palabra:
+                self.cursor.execute(f"DELETE FROM `palabras_destino` WHERE(`palabra` = '{palabra}')")
         self.db.commit()
         self.db.close()
 
@@ -71,7 +70,7 @@ class cConexion:
         self.db.close()
         return "lista reestablecida °w°"
 
-# limpiar el codigo
+# limpiar el codigo X
 # clases estaticas
 # consulta para eliminar el ultimo registro
 # agregar nombre
