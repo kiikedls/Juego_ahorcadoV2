@@ -9,7 +9,12 @@ input()
 lista = cListas()
 data = cConexion()
 code = 1
-
+try:
+    if verificar.verificar():
+        lista.eliminar_BD()
+        data.eliminar_txt()
+except Exception as e:
+    pass
 while code == 1:
     system("cls")
     print("""selecciona una de las siguientes opciones:
@@ -17,8 +22,10 @@ while code == 1:
     2.-agregar una palabra
     3.-salir
     4.-reset""")
+    
     n = int(input())
     if 1 == n:
+        
         if verificar.verificar():
             palabras = data.llenar_lista()
             palabras = data.imprimir_listas()

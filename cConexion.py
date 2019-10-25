@@ -51,13 +51,6 @@ class cConexion:
             palabra = l[0]
             if palabra == n:
                 self.cursor.execute(f"DELETE FROM `palabras_destino` WHERE (`palabra` = '{palabra}')")
-        # self.cursor.execute('DROP TABLE `palabras_destino`')
-        # self.cursor.execute("""
-        #         CREATE TABLE palabras_destino (id int auto_increment not null primary key, 
-        #         palabra varchar(20) not null)""")
-
-        # for i in self.lista_destino:
-        #     self.cursor.execute(f"INSERT INTO `palabras_destino`(`palabra`) VALUES('{i}')")
         self.db.commit()
         self.db.close()
 
@@ -67,7 +60,7 @@ class cConexion:
         self.cursor.execute(f"INSERT INTO `palabras_origen`(`palabra`) VALUES('{p}')")
         self.db.commit()
         self.db.close()
-        print("palabra agregada con exito!")
+        return "palabra agregada con exito!"
 
     def resetear(self):
         self.db = pymysql.connect('127.0.0.1', 'root', '', 'juego')
@@ -89,7 +82,23 @@ class cConexion:
         self.db.close()
         return "lista reestablecida °w°"
 
-# limpiar el codigo
-# clases estaticas
-# consulta para eliminar el ultimo registro
-# agregar nombre
+    def eliminar_txt(self):
+        self.db = pymysql.connect("127.0.0.1", "root", "", "juego")
+        self.cursor = self.db.cursor()
+        self.cursor.execute("SELECT `palabra` FROM palabras_destino")
+        l = []
+        for x in self.cursor.fetchall():
+            pal = x[0]
+            l.append(pal)
+        
+        self.destino = [linea.rstrip() for linea in open("lista_destino.txt")]
+        
+
+        for i,e in enumerate(self.destino):
+            if e not in l:
+                self.destino.remove(e)
+        
+        self.dest = open("lista_destino.txt","w")
+        self.cadena = "\n".join(str(x) for x in self.destino)
+        self.dest.write(self.cadena)
+        self.dest.close() 
