@@ -1,0 +1,4 @@
+hamster
+gato
+laptop
+papa

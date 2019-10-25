@@ -2,6 +2,10 @@ import pymysql
 
 
 class verificar:
+
+    # def __init__(self):
+    #
+    #     self.key=[host='127.0.0.1',user='root',password='',db='juego']
     @staticmethod
     def verificar():
         try:

@@ -7,9 +7,9 @@ class cListas:
         self.lista = []
 
     def llenar_lista(self):
-        self.lista = [line.rstrip() for line in open("lista_destino.txt")]
+        self.lista = [line.rstrip() for line in open("lista_destino.txt",encoding='utf-8')]
         if len(self.lista) == 0:
-            self.lista = [line.rstrip() for line in open("lista_origen.txt")]
+            self.lista = [line.rstrip() for line in open("lista_origen.txt",encoding='utf-8')]
             shuffle(self.lista)
         return self.lista
 
