@@ -1,4 +1,3 @@
 hamster
 gato
 laptop
-papa
