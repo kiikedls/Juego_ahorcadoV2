@@ -30,15 +30,36 @@ class cConexion:
         self.salva_palabra(name)
         return name
 
+    def impPalabras(self):
+        sqlq = 'SELECT * FROM palabras_origen'
+        self.cursor.execute(sqlq)
+        lista = self.cursor.fetchall()
+        for i in lista:
+            id = i[0]
+            palabra = i[1]
+            print("id: {0}, palabra: {1}"
+                  .format(id, palabra))
+
+        self.db.close()
+
     def salva_palabra(self, n):
         self.db = pymysql.connect('127.0.0.1', 'root', '', 'juego')
         self.cursor = self.db.cursor()
+
+        self.cursor.execute('SELECT `palabra` FROM palabras_destino')
+        dest = self.cursor.fetchall()
+        for l in dest:
+            palabra = l[0]
+            if palabra == n:
+                self.cursor.execute(f"DELETE FROM `palabras_destino` WHERE (`palabra` = '{palabra}')")
+
         self.cursor.execute('SELECT `palabra` FROM `palabras_destino`')
         dest=self.cursor.fetchall()
         for l in dest:
             palabra=l[0]
             if n==palabra:
                 self.cursor.execute(f"DELETE FROM `palabras_destino` WHERE(`palabra` = '{palabra}')")
+
         self.db.commit()
         self.db.close()
 
@@ -48,7 +69,7 @@ class cConexion:
         self.cursor.execute(f"INSERT INTO `palabras_origen`(`palabra`) VALUES('{p}')")
         self.db.commit()
         self.db.close()
-        print("palabra agregada con exito!")
+        return "palabra agregada con exito!"
 
     def resetear(self):
         self.db = pymysql.connect('127.0.0.1', 'root', '', 'juego')
@@ -70,7 +91,29 @@ class cConexion:
         self.db.close()
         return "lista reestablecida °w°"
 
+
+    def eliminar_txt(self):
+        self.db = pymysql.connect("127.0.0.1", "root", "", "juego")
+        self.cursor = self.db.cursor()
+        self.cursor.execute("SELECT `palabra` FROM palabras_destino")
+        l = []
+        for x in self.cursor.fetchall():
+            pal = x[0]
+            l.append(pal)
+        
+        self.destino = [linea.rstrip() for linea in open("lista_destino.txt")]
+        
+
+        for i,e in enumerate(self.destino):
+            if e not in l:
+                self.destino.remove(e)
+        
+        self.dest = open("lista_destino.txt","w")
+        self.cadena = "\n".join(str(x) for x in self.destino)
+        self.dest.write(self.cadena)
+        self.dest.close() 
 # limpiar el codigo X
 # clases estaticas
 # consulta para eliminar el ultimo registro
 # agregar nombre
+
