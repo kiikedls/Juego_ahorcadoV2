@@ -5,7 +5,6 @@ class cGato:
         self.game=[]
 
     def getJuego(self):
-
         return self.matriz
 
     def quien_parte(self):
@@ -27,6 +26,8 @@ class cGato:
                     letra=i.upper()
                 elif i in "123":
                     y=int(i)
+                else:
+                    break
             if self.matriz[y][x]==".":
                 self.matriz[y][x]=z
                 return(f"{jugador} ha marcado en {letra}{y}"+"\n")
