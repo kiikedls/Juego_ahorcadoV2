@@ -1,4 +1,2 @@
+pasillas
 hamster
-gato
-laptop
-papa
