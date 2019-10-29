@@ -1,2 +1,8 @@
+<<<<<<< HEAD
 pasillas
 hamster
+=======
+hamster
+gato
+laptop
+>>>>>>> 014a108d6ce12bf9cf3da6f0aa48b3cbb2edd5f3

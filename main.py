@@ -44,6 +44,7 @@ system("cls")
 token = True
 
 while token:
+    system("cls")
     print((">bienvenido a los juegos de juan<".title()).center(50, "=") + "\n")
     juego = int(input("elige el juego que deseas jugar: "
                       "\n1.-gato\n2.-ahorcado\n3.-salir\n"))
@@ -57,14 +58,15 @@ while token:
             opc = int(input("elige una opcion: "
                             "\n1.-empezar a jugar\n2.-salir\n"))
             if 1 == opc:
+                system("cls")
                 print("empieza el juego: ")
                 for i in range(4):
                     print(' ' * 22),
                     for j in range(4):
-                        print(g.getJuego()[i][j], end=""),
+                        print(g.getJuego()[i][j], end=" "),
                 jg=g.quien_parte()
                 print("\nEstas jugando contra la maquina, comienza "+jg)
-                input()
+                input("enter->")
 
                 while True:
                     if jg == "el jugador":
@@ -81,24 +83,33 @@ while token:
                                 print(g.jugada(jg,"X",pos.lower()))
                                 break
                         # print(g.jugada(jg,"X",pos.lower()))
+
+                        system("cls")
+                        print(g.jugada(jg,"X",pos.lower()))
+
                         #imprimir el gato
                         for i in range(4):
                             print(' ' * 22),
                             for j in range(4):
-                                print(g.getJuego()[i][j], end=""),
+                                print(g.getJuego()[i][j], end=" "),
+                        input("\nenter->")
                         if g.ganador(jg)=="ganador":
                             print("Has ganado "+jg)
+                            input()
                             break
                         jg="el CPU"
                     elif jg=="el CPU":
+                        system("cls")
                         print(g.CPU(jg,"O"))
                         #imprimir el gato
                         for i in range(4):
                             print(' ' * 22),
                             for j in range(4):
-                                print(g.getJuego()[i][j], end=""),
+                                print(g.getJuego()[i][j], end=" "),
+                        input("\nenter->")
                         if g.ganador(jg)=="ganador":
                             print("ha ganado "+jg)
+                            input()
                             break
                         jg="el jugador"
 
@@ -106,24 +117,27 @@ while token:
                 code = -1
 
     if juego == 2:
+        system("cls")
         print("bienvenido al ahorcado")
         input()
         lista = cListas()
         data = cConexion()
         code = 1
-
+        try:
+            if verificar.verificar():
+                lista.eliminar_BD()
+                data.eliminar_txt()
+        except Exception as e:
+            pass
         while code == 1:
             system("cls")
             print("selecciona una de las siguientes opciones: "
                   "\n1.-empezar a jugar\n2.-agregar una palabra"
                   "\n3.-salir\n4.-reset\n")
-            #     print("""selecciona una de las siguientes opciones:
-            # 1.-empezar a jugar
-            # 2.-agregar una palabra
-            # 3.-salir
-            # 4.-reset""")
+
             n = int(input())
             if 1 == n:
+
                 if verificar.verificar():
                     palabras = data.llenar_lista()
                     palabras = data.imprimir_listas()
