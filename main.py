@@ -36,6 +36,7 @@ while code == 1:
             palabras = lista.llenar_lista()
             palabras = lista.imprimir_listas()
         ahorcado = cJuego()
+        print(ahorcado.intentos())
         ahorcado.jugar(palabras)
         input()
 
@@ -69,7 +70,17 @@ while token:
                     if jg == "el jugador":
                         pos=str(input("escribe la posicion para tu marca"
                               "(primero la letra, despues el numero)\n"))
-                        print(g.jugada(jg,"X",pos.lower()))
+                        print(len(pos))
+
+                        while len(pos) >= 0 or pos[0] not in "abc" and pos[1] not in "123":
+
+                            if len(pos) >= 0 or pos[0] not in "abc" and pos[1] not in "123":
+                                pos=str(input("escribe la posicion para tu marca"
+                                    "(primero la letra, despues el numero)\n"))
+                            elif len(pos) > 0 and pos[0].lower() in "abc" and pos[1] in "123":
+                                print(g.jugada(jg,"X",pos.lower()))
+                                break
+                        # print(g.jugada(jg,"X",pos.lower()))
                         #imprimir el gato
                         for i in range(4):
                             print(' ' * 22),
