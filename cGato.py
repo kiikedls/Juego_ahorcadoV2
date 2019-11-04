@@ -28,7 +28,7 @@ class cGato:
                     y=int(i)
                 else:
                     break
-            if self.matriz[y][x]==".":
+            if self.matriz[y][x]!=".":
                 self.matriz[y][x]=z
                 return(f"{jugador} ha marcado en {letra}{y}"+"\n")
             break

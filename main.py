@@ -145,6 +145,8 @@ while token:
                 else:
                     palabras = lista.llenar_lista()
                     palabras = lista.imprimir_listas()
+                system("cls")
+                print("tienes 5 intentos para adivinar la palabra oculta antes de quedar ahorcado.")
                 ahorcado = cJuego()
                 ahorcado.jugar(palabras)
                 input()
