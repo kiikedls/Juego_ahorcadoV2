@@ -111,7 +111,28 @@ class cConexion:
         self.dest = open("lista_destino.txt","w")
         self.cadena = "\n".join(str(x) for x in self.destino)
         self.dest.write(self.cadena)
-        self.dest.close() 
+        self.dest.close()
+    def agregar_nombre(self, nombre):
+        self.db = pymysql.connect("127.0.0.1", "root", "", "juego")
+        self.cursor = self.db.cursor()
+        self.cursor.execute(f"INSERT INTO `score`(`nombre`) VALUES('{nombre}')")
+        self.db.commit()
+        self.db.close()
+    def gato(self, game):
+        self.db = pymysql.connect("127.0.0.1", "root","","juego")
+        self.cursor = self.db.cursor()
+        self.cursor.execute("SELECT `id` FROM `score`")
+        numero = []
+        for x in self.cursor.fetchall():
+            n = x[0]
+            numero.append(n)
+        num = numero.pop()
+        self.cursor.execute(f"UPDATE `score` SET `gato` = {game} WHERE id = {num}")
+        self.db.commit()
+        self.db.close()
+        # self.cursor.execute(f"INSERT INTO `score`(`gato`)VALUES('{game}')")
+        # self.db.commit()
+        # self.db.close()
 # limpiar el codigo X
 # clases estaticas
 # consulta para eliminar el ultimo registro
