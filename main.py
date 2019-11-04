@@ -6,44 +6,57 @@ from verificar import verificar
 from cGato import cGato
 
 
-print("bienvenido al ahorcado")
-input()
+print("Nombre del jugador")
+nombre = ""
+nombre=input("")
+game = 0
+puntos = 0
+
 lista = cListas()
 data = cConexion()
-code = 1
+code = 2
 try:
     if verificar.verificar():
         lista.eliminar_BD()
         data.eliminar_txt()
+        while len(nombre) == 0:
+        	if len(nombre) > 0:
+        		data.agregar_nombre(nombre)
+        	else:
+        		system("cls")
+        		print("Nombre del jugador")
+        		nombre=input("")
+        data.agregar_nombre(nombre)
 except Exception as e:
-    pass
-while code == 1:
-    system("cls")
-    print("""selecciona una de las siguientes opciones:
-    1.-empezar a jugar
-    2.-agregar una palabra
-    3.-salir
-    4.-reset""")
+	pass
+# while code == 1:
+#     system("cls")
+#     print("""selecciona una de las siguientes opciones:
+#     1.-empezar a jugar
+#     2.-agregar una palabra
+#     3.-salir
+#     4.-reset""")
     
-    n = int(input())
-    if 1 == n:
+#     n = int(input())
+#     if 1 == n:
         
-        if verificar.verificar():
-            palabras = data.llenar_lista()
-            palabras = data.imprimir_listas()
-            print(palabras)
-        else:
-            palabras = lista.llenar_lista()
-            palabras = lista.imprimir_listas()
-        ahorcado = cJuego()
-        print(ahorcado.intentos())
-        ahorcado.jugar(palabras)
-        input()
+#         if verificar.verificar():
+#             palabras = data.llenar_lista()
+#             palabras = data.imprimir_listas()
+#             print(palabras)
+#         else:
+#             palabras = lista.llenar_lista()
+#             palabras = lista.imprimir_listas()
+#         ahorcado = cJuego()
+#         print(ahorcado.intentos())
+#         ahorcado.jugar(palabras)
+#         input()
 
 system("cls")
 token = True
 
 while token:
+	
     system("cls")
     print((">bienvenido a los juegos de juan<".title()).center(50, "=") + "\n")
     juego = int(input("elige el juego que deseas jugar: "
@@ -59,6 +72,8 @@ while token:
                             "\n1.-empezar a jugar\n2.-salir\n"))
             if 1 == opc:
                 system("cls")
+                game = game + 1
+                data.gato(game)
                 print("empieza el juego: ")
                 for i in range(4):
                     print(' ' * 22),
@@ -72,21 +87,22 @@ while token:
                     if jg == "el jugador":
                         pos=str(input("escribe la posicion para tu marca"
                               "(primero la letra, despues el numero)\n"))
-                        print(len(pos))
-
-                        while len(pos) >= 0 or pos[0] not in "abc" and pos[1] not in "123":
-
-                            if len(pos) >= 0 or pos[0] not in "abc" and pos[1] not in "123":
-                                pos=str(input("escribe la posicion para tu marca"
-                                    "(primero la letra, despues el numero)\n"))
-                            elif len(pos) > 0 and pos[0].lower() in "abc" and pos[1] in "123":
-                                print(g.jugada(jg,"X",pos.lower()))
-                                break
+                        while len(pos) == 0:
+                        	pos=str(input("escribe la posicion para tu marca"
+                        		"(primero la letra, despues el numero)\n"))
+                        while len(pos) > 0:
+                        	if pos[0] in "abc" and pos[1] in "123":
+                        		print(g.jugada(jg,"X",pos.lower()))
+                        		system("cls")
+                        		break
+                        	else:
+                        		pos=str(input("escribe la posicion para tu marca"
+                        			"(primero la letra, despues el numero)\n"))
+                        	while len(pos) == 0:
+                        		pos=str(input("escribe la posicion para tu marca"
+                        			"(primero la letra, despues el numero)\n"))
+                        # system("cls")
                         # print(g.jugada(jg,"X",pos.lower()))
-
-                        system("cls")
-                        print(g.jugada(jg,"X",pos.lower()))
-
                         #imprimir el gato
                         for i in range(4):
                             print(' ' * 22),
@@ -96,6 +112,7 @@ while token:
                         if g.ganador(jg)=="ganador":
                             print("Has ganado "+jg)
                             input()
+                            puntos = puntos + 1
                             break
                         jg="el CPU"
                     elif jg=="el CPU":
@@ -115,6 +132,7 @@ while token:
 
             elif 2 == opc:
                 code = -1
+                game = 0
 
     if juego == 2:
         system("cls")
@@ -147,6 +165,8 @@ while token:
                     palabras = lista.imprimir_listas()
                 ahorcado = cJuego()
                 ahorcado.jugar(palabras)
+                game = game + 1
+                print(game)
                 input()
             elif 2 == n:
                 system("cls")
