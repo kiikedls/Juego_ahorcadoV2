@@ -8,7 +8,8 @@ from cGato import cGato
 print("Nombre del jugador")
 nombre = ""
 nombre = input("")
-game = 0
+Ggame = 0
+Agame=0
 puntos = 0
 
 lista = cListas()
@@ -47,8 +48,8 @@ while token:
                             "\n1.-empezar a jugar\n2.-salir\n"))
             if 1 == opc:
                 system("cls")
-                game = game + 1
-                data.gato(game)
+                Ggame = Ggame + 1
+                data.gato(Ggame)
                 print("empieza el juego: ")
                 for i in range(4):
                     print(' ' * 22),
@@ -76,11 +77,6 @@ while token:
                             while len(pos) == 0:
                                 pos = str(input("escribe la posicion para tu marca"
                                                 "(primero la letra, despues el numero)\n"))
-                        # system("cls")
-                        # print(g.jugada(jg,"X",pos.lower()))
-
-                        # system("cls")
-                        # print(g.jugada(jg, "X", pos.lower()))
 
                         # imprimir el gato
                         for i in range(4):
@@ -145,9 +141,13 @@ while token:
                 system("cls")
                 print("tienes 5 intentos para adivinar la palabra oculta antes de quedar ahorcado.")
                 ahorcado = cJuego()
-                ahorcado.jugar(palabras)
-                game = game + 1
-                print(game)
+                if ahorcado.jugar(palabras)==True:
+                    puntos=puntos+1
+                    print("has ganado!!! ^o^")
+                else:
+                    print("has perdido :(")
+                Agame = Agame + 1
+                print(Agame)
                 input()
             elif 2 == n:
                 system("cls")
@@ -179,6 +179,7 @@ while token:
                 input()
         input("hasta pronto.")
     if juego == 3:
+        lista.score(nombre,Agame,Ggame,puntos)
         token = False
 print("Adios")
 input()

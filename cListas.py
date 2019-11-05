@@ -5,6 +5,7 @@ from random import shuffle
 class cListas:
     def __init__(self):
         self.lista = []
+        self.record=[]
 
     def llenar_lista(self):
         self.lista = [line.rstrip() for line in open("lista_destino.txt",encoding='utf-8')]
@@ -63,3 +64,14 @@ class cListas:
             self.db.close()     
         except Exception as e:
             pass
+
+    def score(self, nombre, agame, ggame, puntos):
+        reg=[[line.rstrip()] for line in open("jugadores.txt",encoding='utf-8')]
+        cadena=[nombre+"-"+str(agame)+"-"+str(ggame)+"-"+str(puntos)]
+        reg.append(cadena)
+        #"\n".join(str(x) for x in self.lista)
+        guardar=open("jugadores.txt", "w", encoding="utf-8")
+        cad="\n".join(str(x) for x in reg)
+        guardar.write(cad)
+        guardar.close()
+        return [[line.rstrip()] for line in open("jugadores.txt",encoding='utf-8')]

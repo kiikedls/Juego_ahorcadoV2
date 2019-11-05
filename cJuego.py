@@ -20,8 +20,8 @@ class cJuego:
             if len(self.aciertos) == 0:
                 print("_ " * len(self.lis))
             elif self.aciertos.count("_") == 0:
-                print("has ganado!!! ^o^")
-                return
+                # print("has ganado!!! ^o^")
+                return True
             else:
                 print(self.aciertos)
             p = input("introduce una letra: ")
@@ -39,8 +39,8 @@ class cJuego:
                 system("cls")
                 print(self.errores(5))
                 # input()
-                print("has perdido :(")
-                return
+                # print("has perdido :(")
+                return False
             else:
                 print("error, esa letra no forma parte de la palabra")
                 self.ner += 1
