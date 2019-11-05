@@ -5,10 +5,9 @@ from cConexion import cConexion
 from verificar import verificar
 from cGato import cGato
 
-
 print("Nombre del jugador")
 nombre = ""
-nombre=input("")
+nombre = input("")
 game = 0
 puntos = 0
 
@@ -20,43 +19,19 @@ try:
         lista.eliminar_BD()
         data.eliminar_txt()
         while len(nombre) == 0:
-        	if len(nombre) > 0:
-        		data.agregar_nombre(nombre)
-        	else:
-        		system("cls")
-        		print("Nombre del jugador")
-        		nombre=input("")
+            if len(nombre) > 0:
+                data.agregar_nombre(nombre)
+            else:
+                system("cls")
+                print("Nombre del jugador")
+                nombre = input("")
         data.agregar_nombre(nombre)
 except Exception as e:
-	pass
-# while code == 1:
-#     system("cls")
-#     print("""selecciona una de las siguientes opciones:
-#     1.-empezar a jugar
-#     2.-agregar una palabra
-#     3.-salir
-#     4.-reset""")
-    
-#     n = int(input())
-#     if 1 == n:
-        
-#         if verificar.verificar():
-#             palabras = data.llenar_lista()
-#             palabras = data.imprimir_listas()
-#             print(palabras)
-#         else:
-#             palabras = lista.llenar_lista()
-#             palabras = lista.imprimir_listas()
-#         ahorcado = cJuego()
-#         print(ahorcado.intentos())
-#         ahorcado.jugar(palabras)
-#         input()
+    pass
 
 system("cls")
 token = True
-
 while token:
-	
     system("cls")
     print((">bienvenido a los juegos de juan<".title()).center(50, "=") + "\n")
     juego = int(input("elige el juego que deseas jugar: "
@@ -64,7 +39,7 @@ while token:
     if juego == 1:
         system("cls")
         code = 1
-        g=cGato()
+        g = cGato()
         print("Bienvenido al gato!!")
         while code == 1:
             system("cls")
@@ -79,56 +54,60 @@ while token:
                     print(' ' * 22),
                     for j in range(4):
                         print(g.getJuego()[i][j], end=" "),
-                jg=g.quien_parte()
-                print("\nEstas jugando contra la maquina, comienza "+jg)
+                jg = g.quien_parte()
+                print("\nEstas jugando contra la maquina, comienza " + jg)
                 input("enter->")
 
                 while True:
                     if jg == "el jugador":
-                        pos=str(input("escribe la posicion para tu marca"
-                              "(primero la letra, despues el numero)\n"))
+                        pos = str(input("escribe la posicion para tu marca"
+                                        "(primero la letra, despues el numero)\n"))
                         while len(pos) == 0:
-                        	pos=str(input("escribe la posicion para tu marca"
-                        		"(primero la letra, despues el numero)\n"))
+                            pos = str(input("escribe la posicion para tu marca"
+                                            "(primero la letra, despues el numero)\n"))
                         while len(pos) > 0:
-                        	if pos[0] in "abc" and pos[1] in "123":
-                        		print(g.jugada(jg,"X",pos.lower()))
-                        		system("cls")
-                        		break
-                        	else:
-                        		pos=str(input("escribe la posicion para tu marca"
-                        			"(primero la letra, despues el numero)\n"))
-                        	while len(pos) == 0:
-                        		pos=str(input("escribe la posicion para tu marca"
-                        			"(primero la letra, despues el numero)\n"))
+                            if pos[0] in "abc" and pos[1] in "123":
+                                system("cls")
+                                print(g.jugada(jg, "X", pos.lower()))
+                                break
+                            else:
+                                pos = str(input("escribe la posicion para tu marca"
+                                                "(primero la letra, despues el numero)\n"))
+                            while len(pos) == 0:
+                                pos = str(input("escribe la posicion para tu marca"
+                                                "(primero la letra, despues el numero)\n"))
                         # system("cls")
                         # print(g.jugada(jg,"X",pos.lower()))
-                        #imprimir el gato
+
+                        # system("cls")
+                        # print(g.jugada(jg, "X", pos.lower()))
+
+                        # imprimir el gato
                         for i in range(4):
                             print(' ' * 22),
                             for j in range(4):
                                 print(g.getJuego()[i][j], end=" "),
                         input("\nenter->")
-                        if g.ganador(jg)=="ganador":
-                            print("Has ganado "+jg)
+                        if g.ganador(jg) == "ganador":
+                            print("Has ganado " + jg)
                             input()
                             puntos = puntos + 1
                             break
-                        jg="el CPU"
-                    elif jg=="el CPU":
+                        jg = "el CPU"
+                    elif jg == "el CPU":
                         system("cls")
-                        print(g.CPU(jg,"O"))
-                        #imprimir el gato
+                        print(g.CPU(jg, "O"))
+                        # imprimir el gato
                         for i in range(4):
                             print(' ' * 22),
                             for j in range(4):
                                 print(g.getJuego()[i][j], end=" "),
                         input("\nenter->")
-                        if g.ganador(jg)=="ganador":
-                            print("ha ganado "+jg)
+                        if g.ganador(jg) == "ganador":
+                            print("ha ganado " + jg)
                             input()
                             break
-                        jg="el jugador"
+                        jg = "el jugador"
 
             elif 2 == opc:
                 code = -1

@@ -22,6 +22,9 @@ class cConexion:
                 palabra = i[0]
                 self.lista_destino.append(palabra)
             shuffle(self.lista_destino)
+            for j in self.lista_destino:
+                self.cursor.execute(f"INSERT INTO `palabras_destino` (`palabra`) VALUES ('{j}');")
+        self.db.commit()
         self.db.close()
         return self.lista_destino
 
@@ -54,10 +57,10 @@ class cConexion:
                 self.cursor.execute(f"DELETE FROM `palabras_destino` WHERE (`palabra` = '{palabra}')")
 
         self.cursor.execute('SELECT `palabra` FROM `palabras_destino`')
-        dest=self.cursor.fetchall()
+        dest = self.cursor.fetchall()
         for l in dest:
-            palabra=l[0]
-            if n==palabra:
+            palabra = l[0]
+            if n == palabra:
                 self.cursor.execute(f"DELETE FROM `palabras_destino` WHERE(`palabra` = '{palabra}')")
 
         self.db.commit()
@@ -91,7 +94,6 @@ class cConexion:
         self.db.close()
         return "lista reestablecida °w°"
 
-
     def eliminar_txt(self):
         self.db = pymysql.connect("127.0.0.1", "root", "", "juego")
         self.cursor = self.db.cursor()
@@ -100,26 +102,27 @@ class cConexion:
         for x in self.cursor.fetchall():
             pal = x[0]
             l.append(pal)
-        
-        self.destino = [linea.rstrip() for linea in open("lista_destino.txt")]
-        
 
-        for i,e in enumerate(self.destino):
+        self.destino = [linea.rstrip() for linea in open("lista_destino.txt")]
+
+        for i, e in enumerate(self.destino):
             if e not in l:
                 self.destino.remove(e)
-        
-        self.dest = open("lista_destino.txt","w")
+
+        self.dest = open("lista_destino.txt", "w")
         self.cadena = "\n".join(str(x) for x in self.destino)
         self.dest.write(self.cadena)
         self.dest.close()
+
     def agregar_nombre(self, nombre):
         self.db = pymysql.connect("127.0.0.1", "root", "", "juego")
         self.cursor = self.db.cursor()
         self.cursor.execute(f"INSERT INTO `score`(`nombre`) VALUES('{nombre}')")
         self.db.commit()
         self.db.close()
+
     def gato(self, game):
-        self.db = pymysql.connect("127.0.0.1", "root","","juego")
+        self.db = pymysql.connect("127.0.0.1", "root", "", "juego")
         self.cursor = self.db.cursor()
         self.cursor.execute("SELECT `id` FROM `score`")
         numero = []
@@ -130,15 +133,3 @@ class cConexion:
         self.cursor.execute(f"UPDATE `score` SET `gato` = {game} WHERE id = {num}")
         self.db.commit()
         self.db.close()
-    # def ahorcado():
-    #     self.db = pymysql.connect("127.0.0.1","root","","juego")
-    #     self.cursor = self.db.cursor()
-    #     self.cursor.execute("SELECT `id`")
-        # self.cursor.execute(f"INSERT INTO `score`(`gato`)VALUES('{game}')")
-        # self.db.commit()
-        # self.db.close()
-# limpiar el codigo X
-# clases estaticas
-# consulta para eliminar el ultimo registro
-# agregar nombre
-

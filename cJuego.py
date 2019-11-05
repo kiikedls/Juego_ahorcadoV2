@@ -6,8 +6,6 @@ class cJuego:
         self.ner = 0
         self.lis = []
         self.aciertos = []
-    def intentos(self):
-        return "tienes 5 intentos para adivinar la palabra oculta antes de quedar ahorcado."
 
     def jugar(self, palabra):
         self.lis.extend(palabra)
@@ -17,12 +15,13 @@ class cJuego:
 
         while llave:
             system("cls")
-            monito = self.errores(self.ner)
+            print("tienes 5 intentos para adivinar la palabra oculta antes de quedar ahorcado.")
+            print(self.errores(self.ner))
             if len(self.aciertos) == 0:
                 print("_ " * len(self.lis))
             elif self.aciertos.count("_") == 0:
-
-                return monito + "\nhas ganado!!! ^o^"
+                print("has ganado!!! ^o^")
+                return
             else:
                 print(self.aciertos)
             p = input("introduce una letra: ")
