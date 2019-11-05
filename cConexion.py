@@ -130,6 +130,10 @@ class cConexion:
         self.cursor.execute(f"UPDATE `score` SET `gato` = {game} WHERE id = {num}")
         self.db.commit()
         self.db.close()
+    # def ahorcado():
+    #     self.db = pymysql.connect("127.0.0.1","root","","juego")
+    #     self.cursor = self.db.cursor()
+    #     self.cursor.execute("SELECT `id`")
         # self.cursor.execute(f"INSERT INTO `score`(`gato`)VALUES('{game}')")
         # self.db.commit()
         # self.db.close()
