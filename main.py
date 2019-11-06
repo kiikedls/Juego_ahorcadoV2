@@ -49,7 +49,11 @@ while token:
             if 1 == opc:
                 system("cls")
                 Ggame = Ggame + 1
-                data.gato(Ggame)
+                try:
+                    data.gato(Ggame,puntos)
+                except Exception as e:
+                    pass
+                # data.gato(Ggame,puntos)
                 print("empieza el juego: ")
                 for i in range(4):
                     print(' ' * 22),
@@ -85,9 +89,10 @@ while token:
                                 print(g.getJuego()[i][j], end=" "),
                         input("\nenter->")
                         if g.ganador(jg) == "ganador":
+                            puntos = puntos + 1
+                            data.gato(Ggame,puntos)
                             print("Has ganado " + jg)
                             input()
-                            puntos = puntos + 1
                             break
                         jg = "el CPU"
                     elif jg == "el CPU":
@@ -107,7 +112,7 @@ while token:
 
             elif 2 == opc:
                 code = -1
-                game = 0
+                Ggame = 0
 
     if juego == 2:
         system("cls")
@@ -135,6 +140,8 @@ while token:
                     palabras = data.llenar_lista()
                     palabras = data.imprimir_listas()
                     print(palabras)
+                    Ggame = Ggame + 1
+                    data.ahorcado(Ggame,puntos)
                 else:
                     palabras = lista.llenar_lista()
                     palabras = lista.imprimir_listas()
@@ -179,6 +186,10 @@ while token:
                 input()
         input("hasta pronto.")
     if juego == 3:
+        try:
+            data.ahorcado(Ggame,puntos)
+        except Exception as e:
+            pass
         lista.score(nombre,Agame,Ggame,puntos)
         token = False
 print("Adios")
