@@ -70,7 +70,12 @@ class cGato:
             return (f"{jugador} ha marcado en {letra}{y}")
 
     def reset(self):
+        x=0
         for i in self.matriz:
-            if i != ".":
-                i = "."
+            y = 0
+            for j in i:
+                if j == "X" or j=="O":
+                    self.matriz[x][y] = "."
+                y=y+1
+            x=x+1
         return
