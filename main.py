@@ -11,6 +11,8 @@ nombre = input("")
 Ggame = 0
 Agame=0
 puntos = 0
+Gpuntos = 0
+Apuntos = 0
 
 lista = cListas()
 data = cConexion()
@@ -89,8 +91,8 @@ while token:
                                 print(g.getJuego()[i][j], end=" "),
                         input("\nenter->")
                         if g.ganador(jg) == "ganador":
-                            puntos = puntos + 1
-                            data.gato(Ggame,puntos)
+                            Gpuntos = Gpuntos + 1
+                            data.gato(Ggame,Gpuntos)
                             print("Has ganado " + jg)
                             input()
                             break
@@ -141,7 +143,7 @@ while token:
                     palabras = data.imprimir_listas()
                     print(palabras)
                     Ggame = Ggame + 1
-                    data.ahorcado(Ggame,puntos)
+                    data.ahorcado(Ggame,Apuntos)
                 else:
                     palabras = lista.llenar_lista()
                     palabras = lista.imprimir_listas()
@@ -150,6 +152,11 @@ while token:
                 ahorcado = cJuego()
                 if ahorcado.jugar(palabras)==True:
                     puntos=puntos+1
+                    Apuntos = Apuntos + 1
+                    try:
+                        data.ahorcado(Ggame,Apuntos)
+                    except Exception as e:
+                        pass
                     print("has ganado!!! ^o^")
                 else:
                     print("has perdido :(")
@@ -187,7 +194,7 @@ while token:
         input("hasta pronto.")
     if juego == 3:
         try:
-            data.ahorcado(Ggame,puntos)
+            data.ahorcado(Ggame,Apuntos)
         except Exception as e:
             pass
         lista.score(nombre,Agame,Ggame,puntos)

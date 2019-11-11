@@ -121,8 +121,8 @@ class cConexion:
         self.db.commit()
         self.db.close()
 
-    def gato(self, game):
-        self.db = pymysql.connect("127.0.0.1", "root", "", "juego")
+    def gato(self, game,puntos):
+        self.db = pymysql.connect("127.0.0.1", "root","","juego")
         self.cursor = self.db.cursor()
         self.cursor.execute("SELECT `id` FROM `score`")
         numero = []
@@ -131,5 +131,19 @@ class cConexion:
             numero.append(n)
         num = numero.pop()
         self.cursor.execute(f"UPDATE `score` SET `gato` = {game} WHERE id = {num}")
+        self.cursor.execute(f"UPDATE `score` SET `Gpuntos` = {puntos} WHERE id = {num}")
+        self.db.commit()
+        self.db.close()
+    def ahorcado(self,game,puntos):
+        self.db = pymysql.connect("127.0.0.1", "root","","juego")
+        self.cursor = self.db.cursor()
+        self.cursor.execute("SELECT `id` FROM `score`")
+        numero = []
+        for x in self.cursor.fetchall():
+            n = x[0]
+            numero.append(n)
+        num = numero.pop()
+        self.cursor.execute(f"UPDATE `score` SET `ahorcado` = {game} WHERE id = {num}")
+        self.cursor.execute(f"UPDATE `score` SET `Apuntos` = {puntos} WHERE id = {num}")
         self.db.commit()
         self.db.close()
