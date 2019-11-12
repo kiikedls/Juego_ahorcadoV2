@@ -94,11 +94,11 @@ while token:
                         if g.ganador(jg) == "ganador":
 
                             Gpuntos = Gpuntos + 1
-                            data.gato(Ggame,Gpuntos)
+                            
 
                             puntos = puntos + 1
                             try:
-                                data.gato(Ggame,puntos)
+                                data.gato(Ggame,Gpuntos)
                             except Exception as e:
                                 pass
 
