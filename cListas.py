@@ -65,13 +65,21 @@ class cListas:
         except Exception as e:
             pass
 
-    def score(self, nombre, agame, ggame, puntos):
-        reg=[[line.rstrip()] for line in open("jugadores.txt",encoding='utf-8')]
-        cadena=[nombre+"-"+str(agame)+"-"+str(ggame)+"-"+str(puntos)]
-        reg.append(cadena)
-        #"\n".join(str(x) for x in self.lista)
+    def score(self, nombre, agame,apuntos, ggame, gpuntos):
+        reg=[line.rstrip() for line in open("jugadores.txt",encoding='utf-8')]
+        print(reg)
+        input()
+        cadena=[nombre+"-"+str(agame)+"-"+str(apuntos)+"-"+str(ggame)+"-"+str(gpuntos)]
+        print(cadena)
+        input()
+        reg.extend(cadena)
+        print(reg)
+        input()
+        # "\n".join(str(x) for x in self.lista)
         guardar=open("jugadores.txt", "w", encoding="utf-8")
         cad="\n".join(str(x) for x in reg)
+        print(cad)
+        input()
         guardar.write(cad)
         guardar.close()
         return [[line.rstrip()] for line in open("jugadores.txt",encoding='utf-8')]

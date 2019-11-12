@@ -214,7 +214,7 @@ while token:
             data.ahorcado(Ggame,Apuntos)
         except Exception as e:
             pass
-        lista.score(nombre,Agame,Ggame,puntos)
+        lista.score(nombre,Agame,Apuntos,Ggame,Gpuntos)
         token = False
 print("Adios")
 input()
