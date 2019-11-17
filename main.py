@@ -5,9 +5,9 @@ from cConexion import cConexion
 from verificar import verificar
 from cGato import cGato
 
-print("Nombre del jugador")
-nombre = ""
-nombre = input("")
+# print("Nombre del jugador")
+# nombre = ""
+# nombre = input("")
 Ggame = 0
 Agame=0
 puntos = 0
@@ -20,6 +20,7 @@ g = cGato()
 code = 2
 try:
     if verificar.verificar():
+        lista.actualizar_puntos()
         lista.eliminar_BD()
         data.eliminar_txt()
         while len(nombre) == 0:

@@ -67,19 +67,36 @@ class cListas:
 
     def score(self, nombre, agame,apuntos, ggame, gpuntos):
         reg=[line.rstrip() for line in open("jugadores.txt",encoding='utf-8')]
-        print(reg)
-        input()
-        cadena=[nombre+"-"+str(agame)+"-"+str(apuntos)+"-"+str(ggame)+"-"+str(gpuntos)]
-        print(cadena)
-        input()
+        cadena=[nombre+" "+str(agame)+" "+str(apuntos)+" "+str(ggame)+" "+str(gpuntos)]
         reg.extend(cadena)
-        print(reg)
-        input()
+
         # "\n".join(str(x) for x in self.lista)
         guardar=open("jugadores.txt", "w", encoding="utf-8")
         cad="\n".join(str(x) for x in reg)
-        print(cad)
-        input()
+
         guardar.write(cad)
         guardar.close()
         return [[line.rstrip()] for line in open("jugadores.txt",encoding='utf-8')]
+
+    def actualizar_puntos(self):
+        self.listabd = []
+        self.lista = [line.rstrip() for line in open("jugadores.txt",encoding='utf-8')]
+        for x in self.lista:
+            cadena = x
+            separador = " "
+            cadena_separada = cadena.split(separador)
+            self.listabd.append(cadena_separada)
+        print(self.listabd)
+        try:
+            self.db = pymysql.connect('127.0.0.1', 'root', '', 'juego')
+            self.cursor = self.db.cursor()
+            a = self.cursor.execute("SELECT `id`FROM score")
+            for x in self.cursor.fetchall():
+                print(x[0])
+                self.cursor.execute(f"DELETE FROM `score` where `id` = '{x[0]}'")
+            for x in self.listabd:
+                self.cursor.execute(f"INSERT INTO `score` (`nombre`,`ahorcado`,`gato`,`Apuntos`,`Gpuntos`) VALUES ('{x[0]}','{x[1]}','{x[2]}','{x[3]}','{x[4]}')")
+            self.db.commit()
+            self.close()
+        except Exception as e:
+            pass

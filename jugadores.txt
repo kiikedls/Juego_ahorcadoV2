@@ -1,4 +1,9 @@
-kiike-2-1-3-2
-juan-1-1-0-0
-enrique-1-1-3-3
-pifi-2-2-2-2
+kiike 2 1 3 2
+juan 1 1 0 0
+enrique 1 1 3 3
+pifi 2 2 2 2
+lolo 0 0 0 0
+fack 0 0 0 0
+popo 0 0 0 0
+memo 0 0 0 0
+pasillon 0 0 0 0
